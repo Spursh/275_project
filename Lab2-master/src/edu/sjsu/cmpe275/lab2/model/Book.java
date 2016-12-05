@@ -36,7 +36,7 @@ public class Book {
 	@Column(name = "LOCATION")
 	private String location;
 	@Column(name = "COPIES")
-	private String copies;
+	private int copies;
 	@Column(name = "STATUS")
 	private String status;
 	@Column(name = "KEYWORDS")
@@ -105,11 +105,11 @@ public class Book {
 		this.location = location;
 	}
 
-	public String getCopies() {
+	public int getCopies() {
 		return copies;
 	}
 
-	public void setCopies(String copies) {
+	public void setCopies(int copies) {
 		this.copies = copies;
 	}
 
@@ -138,7 +138,7 @@ public class Book {
 	}
 
 	public Book(String bookid, String author, String title, String callnum, String publisher, String year,
-			String location, String copies, String status, String keywords, List<User> user) {
+			String location, int copies, String status, String keywords, List<User> user) {
 		super();
 		this.bookid = bookid;
 		this.author = author;

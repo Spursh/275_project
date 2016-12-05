@@ -1,5 +1,6 @@
 package edu.sjsu.cmpe275.lab2.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -34,8 +35,28 @@ public class User {
 	private String univid;
 	@Column(name = "UNIQUECODE")
 	private String uniquecode;
+	@Column(name = "Checkout_Date")
+	private LocalDate checkoutDate;
+	@Column(name = "Due_Date")
+	private LocalDate dueDate;
 	
-	 @ManyToMany(mappedBy="user", fetch=FetchType.LAZY)
+	 public LocalDate getCheckoutDate() {
+		return checkoutDate;
+	}
+
+	public void setCheckoutDate(LocalDate checkoutDate) {
+		this.checkoutDate = checkoutDate;
+	}
+
+	public LocalDate getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	@ManyToMany(mappedBy="user", fetch=FetchType.LAZY)
 	    @JsonBackReference
 	   private List<Book> books;
 
@@ -95,8 +116,9 @@ public class User {
 		this.books = books;
 	}
 
+	
 	public User(String email, String firstName, String lastName, String password, String univid, String uniquecode,
-			List<Book> books) {
+			LocalDate checkoutDate, LocalDate dueDate, List<Book> books) {
 		super();
 		this.email = email;
 		this.firstName = firstName;
@@ -104,6 +126,8 @@ public class User {
 		this.password = password;
 		this.univid = univid;
 		this.uniquecode = uniquecode;
+		this.checkoutDate = checkoutDate;
+		this.dueDate = dueDate;
 		this.books = books;
 	}
 

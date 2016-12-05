@@ -1,4 +1,4 @@
-/*package edu.sjsu.cmpe275.lab2.controller;
+package edu.sjsu.cmpe275.lab2.controller;
 
 
 import java.io.IOException;
@@ -23,15 +23,51 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.sjsu.cmpe275.lab2.dao.CreateUser;
+
+import edu.sjsu.cmpe275.lab2.dao.BookCheckout;
+import edu.sjsu.cmpe275.lab2.model.Book;
+//import edu.sjsu.cmpe275.lab2.dao.CreateUser;
 import edu.sjsu.cmpe275.lab2.model.User;
 
-Contoller Class for User Creation handling GET, POST, DELETE
+//Contoller Class for User Creation handling GET, POST, DELETE
 
 @Controller
-public class UserController {
+public class BookController {
+	
+	
+/*@RequestMapping(value = "/book", method = RequestMethod.GET)
+public ModelAndView bb()
+{
+	ModelAndView model = new ModelAndView("bookCheckoutDetails");
+	return model;
+}
+*/
 
-	Creates user with GET Call
+
+@RequestMapping(value = "book/{bookid}", method = RequestMethod.GET )
+public ModelAndView getBookDetails(@PathVariable("bookid")String bookid)
+{
+	BookCheckout bC = new BookCheckout();
+	Book bDetails = bC.getbDetails(bookid);
+	ModelAndView model = new ModelAndView("bookCheckoutDetails");
+	model.addObject(bDetails);
+	return model;
+}
+
+@RequestMapping(value = "/bookCheckout", method = RequestMethod.POST)
+public ModelAndView bookChekout(@RequestParam("bookid")String bookid)
+{
+	BookCheckout bC = new BookCheckout();
+	bC.checkoutBook(bookid);
+	
+	ModelAndView model = new ModelAndView("book");
+	return model;
+}
+
+
+
+
+	/*Creates user with GET Call
 	CreateUser cU = new CreateUser();
 	@RequestMapping(value = "/user", method = RequestMethod.GET )
 	public ModelAndView createUser(){
@@ -162,6 +198,4 @@ public class UserController {
 		cU.deleteObjectById(userId);
 		return "user";
 	}
-}
-
-*/
+*/}
