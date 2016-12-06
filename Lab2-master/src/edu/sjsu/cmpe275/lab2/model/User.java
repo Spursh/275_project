@@ -1,6 +1,7 @@
 package edu.sjsu.cmpe275.lab2.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,9 +21,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table
 public class User {
 
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USERID")
+	private String userid;
 	@Column(name = "EMAIL")
 	private String email;
 	@Column(name = "FIRSTNAME")
@@ -36,23 +38,24 @@ public class User {
 	@Column(name = "UNIQUECODE")
 	private String uniquecode;
 	@Column(name = "Checkout_Date")
-	private LocalDate checkoutDate;
+	private String checkoutDate;
 	@Column(name = "Due_Date")
-	private LocalDate dueDate;
-	
-	 public LocalDate getCheckoutDate() {
+	private String dueDate;
+	public String getCheckoutDate() {
 		return checkoutDate;
 	}
 
-	public void setCheckoutDate(LocalDate checkoutDate) {
+	public void setCheckoutDate(String checkoutDate) {
 		this.checkoutDate = checkoutDate;
 	}
 
-	public LocalDate getDueDate() {
+	
+	
+	public String getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(LocalDate dueDate) {
+	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
 
@@ -115,11 +118,21 @@ public class User {
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
+	
 
 	
-	public User(String email, String firstName, String lastName, String password, String univid, String uniquecode,
-			LocalDate checkoutDate, LocalDate dueDate, List<Book> books) {
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public User(String userid, String email, String firstName, String lastName, String password, String univid,
+			String uniquecode,String checkoutDate, String dueDate, List<Book> books) {
 		super();
+		this.userid = userid;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
