@@ -103,7 +103,7 @@ public String updateBookDetails(@RequestParam("bookid")String bookid,
 	{
 		//String id = Long.toString(System.currentTimeMillis());
 		updatebook.updateBook(bookid, author, title, callnum, publisher, year, location, copies,status, keywords);
-			//return "success";
+			
 			return "redirect:/book/" + bookid;
 	}	
 
@@ -118,120 +118,30 @@ public String deleteBook(@PathVariable("bookid")  String bookid){
 
 
 
+/*
+ * Search the Book details based on title
+ */
+@RequestMapping(value = "book/searchBook", method = RequestMethod.GET )
+public ModelAndView searchBook(){
+	ModelAndView model = new ModelAndView("searchBook");
+	return model;
+	}
 
-
-
-
-
-	/*Creates user with GET Call
-	
-	
-	@RequestMapping(value = "user/{userid}", method = RequestMethod.GET )
-	public ModelAndView updateDeleteUser(@PathVariable("userid")String userid,HttpServletResponse httpRes){
+@RequestMapping(value = "book/searchBook/", method = RequestMethod.POST )
+public ModelAndView searchBooks(@RequestParam("title")String title)	
+{		System.out.println("In cintroller " +title);
+		Book newbook =new Book();
+		newbook=b.getBookByTitle(title);
 		
-		Get the User Details from Database With GET Call
+		System.out.println("In cintroller Nwbook " +newbook.getTitle());
 		
-		ModelAndView model = null;
-		User userDetails = cU.getObjectById(userid);
-		if(userDetails==null){
-			httpRes.setStatus( HttpServletResponse.SC_NOT_FOUND);
-			 model = new ModelAndView("errorPage");
-			 model.addObject("givenid", userid);
-		}else{
-			 model = new ModelAndView("userUpdateDelete");
-			model.addObject(userDetails);
-			
-		}
+		ModelAndView model = new ModelAndView("addBookToCart");
+		
+		model.addObject(newbook);
+		System.out.println("In cintroller 22 Nwbook " +newbook.getPublisher());
 		return model;
-	}
-	@RequestMapping(value = "userJSON/{userid}", method = RequestMethod.GET )
-	public ModelAndView jsonUser(@PathVariable("userid")String userid){
 		
-		ObjectMapper mapper = new ObjectMapper();
-		System.out.println("user id "+userid);
-		User user = cU.getJsonById(userid);
-		
-		User user = cU.getObjectById(userid);
-		
-		
-		System.out.println("in controller user object"+ user);
-		
-		String jsonString = null;
-		
-		try {
-		jsonString = mapper.writeValueAsString(user);
-		System.out.println(jsonString);
-		}
-		 catch (JsonGenerationException e) {
-				e.printStackTrace();
-			} catch (JsonMappingException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		System.out.println("json string"+jsonString);
-		
-		ModelAndView model = new ModelAndView("jsonUserDetails");
-		model.addObject("userdetails", jsonString);
-		return model;
-	}
+	
+}
+}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	   @RequestMapping(value = "/user/{userid}",params={"json"}, method=RequestMethod.GET, produces="application/json")
-	    @ResponseBody
-	    public String getPhoneJson(
-	      HttpServletRequest request,
-	      HttpServletResponse response,
-	    @PathVariable("userid") String userid,
-	    @RequestParam(value = "json") String value){
-	    String s = "JSON fdsfdsfdsf";
-	    
-	    CreateUser cU = new CreateUser();
-	  
-	    
-	    User user =   cU.getJsonById(userid);
-	        ObjectMapper mapper = new ObjectMapper();
-	        String jsonInString = "";
-	        if(user==null){
-	        response.setStatus(404);
-	        return " sorry  "+userid+" does not exist";
-	        }
-	        try {
-	            jsonInString = mapper.writeValueAsString(user);
-	            } catch (JsonProcessingException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        }
-	            return jsonInString;
-	     }
-
-
-
-	//@RequestMapping(value = "/updateUser", method = RequestMethod.POST )
-	@RequestMapping(value="/user/{userid}" ,method = RequestMethod.POST)
-	public String updateUser(@PathVariable("userid") String userId,@RequestParam Map<String, String> req){
-		
-		Takes the User Details  and Update user table in Database with Post Call
-		
-		System.out.println("Results are Shown here ----------->"+ req.get("firstname") );
-		cU.update(req.get("firstname"), req.get("lastname"), req.get("title"), req.get("city"), req.get("state"), req.get("zip"), req.get("street"), userId);
-		return "redirect:/user/" + userId;
-		}
-	
-	
-	@RequestMapping(value = "/user/{userId}", method = RequestMethod.DELETE )
-	public String deleteUser(@PathVariable("userId")  String userId){
-		Deletes the User according to userID in function with Delete Call
-		cU.deleteObjectById(userId);
-		return "user";
-	}
-*/}

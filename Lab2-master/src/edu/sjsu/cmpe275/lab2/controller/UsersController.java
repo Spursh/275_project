@@ -39,7 +39,7 @@ public class UsersController {
 		User user = new User();
 		user = cu.getObjectByEmail(email);
 		if (user != null && user.getEmail().equals(email) && user.getPassword().equals(password)) {
-			ModelAndView model = new ModelAndView("addBook");// go to search
+			ModelAndView model = new ModelAndView("searchBook");// go to search
 																// page
 			model.addObject(user);
 			return model;

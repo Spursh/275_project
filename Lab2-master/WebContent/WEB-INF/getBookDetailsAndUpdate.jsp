@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>Update Book Details</title>
+	<title>User Update</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<script
@@ -58,7 +58,7 @@ $.ajax({
 						</div>
 						
 						<div class="form-group" >
-							<label for="callnum">Call Number</label> <input type="text"
+							<label for="callnum">Call Number</label> <input type="password"
 							class="form-control" id="callnum" name="callnum" value ="${newbook.callnum}" >
 						</div>
 						<div class="form-group" >
