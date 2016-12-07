@@ -35,16 +35,16 @@
 						</div>
 						<div class="form-group" >
 							<label for="email">Email</label> <input type="Text"
-							class="form-control" name="email">
+							class="form-control" name="email" required>
 						</div>
 						
 						<div class="form-group" >
 							<label for="password">Password</label> <input type="password"
-							class="form-control" name="password" >
+							class="form-control" name="password" required>
 						</div>
 						<div class="form-group" >
 							<label for="universityid">University ID</label> <input type="text"
-							class="form-control" name="univid">
+							class="form-control" name="univid" required>
 						</div>
 						
 						<button type="submit" value="Continue" class="btn btn-default" name="action">Submit Details</button>

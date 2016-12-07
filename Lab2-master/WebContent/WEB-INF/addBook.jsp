@@ -16,7 +16,8 @@
 <body>
 	<div class="container-fluid">
 		<div class="jumbotron">
-			<h2 id="title">Enter Book Details</h2>			
+			<h2 id="title">Enter Book Details</h2>	
+				<input type="text" name="id" value="${user.userid}" />	
 		</div>
 	</div>
 	<div class="container-fluid" id="register">
@@ -25,6 +26,7 @@
 			<div class="col-md-6">
 				<div class="span8">
 					<form action="/275_lab2/book/createBook" method="post">
+					
 						<div class="form-group" >
 							<label for="bookid">Book ID</label> <input type="text"
 							class="form-control" id="bookid" name="bookid" placeholder="Book ID">
