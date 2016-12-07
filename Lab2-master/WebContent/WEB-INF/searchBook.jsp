@@ -49,7 +49,8 @@
 <body>
 	<div class="container-fluid">
 		<div class="jumbotron">
-			<h2>Search a Book</h2>			
+			<h2>Search a Book</h2>
+			<input type="text" name="id" value="${user.userid}" />	
 		</div>
 	</div>
 	<div class="container-fluid" id="register">
