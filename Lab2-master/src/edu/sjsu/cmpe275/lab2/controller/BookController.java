@@ -44,7 +44,7 @@ public ModelAndView bb()
 */
 
 
-@RequestMapping(value = "book/{bookid}", method = RequestMethod.GET )
+@RequestMapping(value = "books/{bookid}", method = RequestMethod.GET )
 public ModelAndView getBookDetails(@PathVariable("bookid")String bookid)
 {
 	BookCheckout bC = new BookCheckout();
